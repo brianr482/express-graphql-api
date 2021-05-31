@@ -1,6 +1,5 @@
 const { v4: uuidv4 } = require('uuid');
 const { tweets, Tweet } = require('../models/Tweet');
-const usersController = require('./users-controller');
 
 const index = () => tweets.values();
 

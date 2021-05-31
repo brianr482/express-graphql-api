@@ -5,7 +5,7 @@ class Tweet {
     Object.assign(this, data);
   }
   get author () {
-    return users.get(this.author);
+    return users.get(this.authorId);
   }
 };
 
