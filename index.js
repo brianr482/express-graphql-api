@@ -6,6 +6,7 @@ const {
   schemas,
   contextHandler
 } = require('./graphql');
+require('./scripts/mock-data');
 
 const app = express();
 
