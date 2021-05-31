@@ -1,9 +1,40 @@
 const { gql } = require('apollo-server-express');
 
 const schemas = gql`
+  # Queries
   type Query {
-    "A simple type for getting started!"
-    hello: String
+    tweets: [Tweet]
+    tweet(id: ID): Tweet
+    users: [User]
+    user(id: ID): User
+  }
+
+  # Object types
+  type Tweet {
+    id: ID!
+    author: User!
+    body: String!
+  }
+  type User {
+    id: ID!
+    tweets: [Tweet!]
+    fullname: String!
+    email: String!
+  }
+
+  # Mutations
+  type Mutation {
+    createTweet(input: TweetInput!): Tweet
+    removeTweet(id: ID!): Boolean
+
+    createUser(input: UserInput!): User
+  }
+  input TweetInput {
+    body: String!
+  }
+  input UserInput {
+    fullname: String!
+    email: String!
   }
 `;
 
