@@ -4,13 +4,14 @@ const usersController = require('./users-controller');
 
 const index = () => tweets.values();
 
-const getById = ({ id }) => tweets.get(id);
+const getById = (id) => tweets.get(id);
 
-const create = ({ input }, { headers }) => {
-  const authorId =  usersController.getById(headers);
-  if (!authorId) {
+const create = (input, { user }) => {
+  if (!user) {
     return null;
   }
+
+  const authorId = user.id;
 
   const id = uuidv4();
   const { body } = input;
@@ -20,7 +21,7 @@ const create = ({ input }, { headers }) => {
   return newTweet;
 };
 
-const remove = ({ id }, { headers }) => {
+const remove = (id) => {
   if (!tweets.has(id)) {
     return false;
   }
