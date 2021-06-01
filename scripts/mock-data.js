@@ -6,6 +6,9 @@ const { Tweet, User } = require('../models');
 const FAKE_USERS_AMOUNT = 20;
 const FAKE_TWEETS_AMOUNT = 50;
 
+/**
+ * Populate the users datasource with mock users.
+ */
 const mockUsers = () => {
   for (let i = 0; i < FAKE_USERS_AMOUNT; i++) {
     const id = uuidv4();
@@ -19,6 +22,9 @@ const mockUsers = () => {
   }
 };
 
+/**
+ * Populate the tweets datasource with mock tweets.
+ */
 const mockTweets = () => {
   const userIds = [...users.keys()];
   for (let i = 0; i < FAKE_TWEETS_AMOUNT; i++) {
