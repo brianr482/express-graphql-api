@@ -1,6 +1,7 @@
 {
   "name": "functions",
-  "description": "Cloud Functions for GraphQL API -- JS Shouts",
+  "description": "Google Cloud Functions for GraphQL API using Node.js, Express.js and Apollo Server",
+  "author": "Brian Ramirez <brianramirez482@gmail.com> (https://github.com/brianr482/)",
   "scripts": {
     "serve": "firebase emulators:start --only functions",
     "shell": "firebase functions:shell",
