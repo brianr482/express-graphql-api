@@ -12,7 +12,7 @@ class User {
    * Get the tweets created by the author
    */
   get tweets () {
-    return [...tweets.values()].filter(tweet => tweet.userId === this.id);
+    return [...tweets.values()].filter(tweet => tweet.authorId === this.id);
   }
 }
 
