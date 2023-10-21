@@ -1,9 +1,9 @@
-const {
+import {
   usersController,
   tweetsController,
-} = require('../controllers');
+} from '../controllers/index.js';
 
-const resolverFunctions = {
+export const resolverFunctions = {
   // Queries
   Query: {
     // Tweets
@@ -24,5 +24,3 @@ const resolverFunctions = {
     createUser: (_, { input }) => usersController.create(input),
   }
 };
-
-module.exports = resolverFunctions;

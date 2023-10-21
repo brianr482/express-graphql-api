@@ -1,18 +1,18 @@
-const { v4: uuidv4 } = require('uuid');
-const { tweets, Tweet } = require('../models/Tweet');
+import { v4 as uuidv4 } from 'uuid';
+import { tweets, Tweet } from '../models/Tweet.js';
 
 /**
  * Fetch all the tweets from datasource
  * @returns {Tweet[]} List of all tweets
  */
-const index = () => tweets.values();
+export const index = () => tweets.values();
 
 /**
  * Get a tweet by filtering by the given tweet id
  * @param {string} id UUID of the tweet to fetch
  * @returns {Tweet|null} Tweet or null if not found
  */
-const getById = (id) => tweets.get(id);
+export const getById = (id) => tweets.get(id);
 
 /**
  * Create a tweet
@@ -20,7 +20,7 @@ const getById = (id) => tweets.get(id);
  * @param {object} context Context of the current operation 
  * @returns {Tweet} Created tweet or null if author is not found
  */
-const create = (input, { user }) => {
+export const create = (input, { user }) => {
   if (!user) {
     return null;
   }
@@ -40,17 +40,10 @@ const create = (input, { user }) => {
  * @param {string} id UUID of the tweet to be removed
  * @returns {boolean} true if the tweet was removed, otherwise false
  */
-const remove = (id) => {
+export const remove = (id) => {
   if (!tweets.has(id)) {
     return false;
   }
 
   return tweets.delete(id);
-};
-
-module.exports = {
-  index,
-  getById,
-  create,
-  remove
 };

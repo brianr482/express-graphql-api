@@ -1,29 +1,44 @@
-const functions = require('firebase-functions');
-const express = require('express');
-const { ApolloServer } = require('apollo-server-express');
-const {
+import express from 'express';
+import cors from 'cors';
+import http from 'http';
+import { ApolloServer } from '@apollo/server';
+import { expressMiddleware } from '@apollo/server/express4';
+import { ApolloServerPluginDrainHttpServer } from '@apollo/server/plugin/drainHttpServer';
+import {
   resolvers,
   schemas,
   contextHandler
-} = require('./graphql');
+} from './graphql/index.js';
 
 // Populate datasources with mock data
-require('./scripts/mock-data');
+import './scripts/mock-data.js';
 
 const app = express();
+const httpServer = http.createServer(app);
 
 // Create the GraphQL server instance
 const apolloServer = new ApolloServer({
   typeDefs: schemas,
   resolvers,
+  plugins: [ApolloServerPluginDrainHttpServer({ httpServer })],
   context: contextHandler,
 
-  // Graphiql
+  // Sandbox
   introspection: true,
-  playground: true
 });
 
-// Integrate GraphQL server with Express
-apolloServer.applyMiddleware({ app, path: '/', cors: true });
+await apolloServer.start();
 
-exports.graphql = functions.https.onRequest(app);
+// Integrate GraphQL server with Express
+app.use(
+  '/graphql',
+  cors(),
+  express.json(),
+  expressMiddleware(
+    apolloServer,
+    { context: contextHandler },
+  ),
+);
+
+await new Promise((resolve) => httpServer.listen({ port: 4000 }, resolve));
+console.log('Running server on http://localhost:4000/graphql');

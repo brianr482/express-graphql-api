@@ -1,25 +1,25 @@
-const { v4: uuidv4 } = require('uuid');
-const { users, User } = require('../models/User');
+import { v4 as uuidv4 } from 'uuid';
+import { users, User } from '../models/User.js';
 
 /**
  * Fetch all the users from datasource
  * @returns {User[]} List of all users
  */
-const index = () => users.values();
+export const index = () => users.values();
 
 /**
  * Get an user by filtering by the given user id
  * @param {string} id UUID of the user to fetch
  * @returns {User|null} User or null if not found
  */
-const getById = (id) => users.get(id);
+export const getById = (id) => users.get(id);
 
 /**
  * Create an user
  * @param {object} input Data of the user to be created
  * @returns {Tweet} Created user
  */
-const create = (input) => {
+export const create = (input) => {
   const id = uuidv4();
   const { fullname, email } = input;
   const newUser = new User({ id, fullname, email });
@@ -27,9 +27,3 @@ const create = (input) => {
   
   return newUser;
 }
-
-module.exports = {
-  index,
-  getById,
-  create
-};

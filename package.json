@@ -5,24 +5,26 @@
   "scripts": {
     "serve": "firebase emulators:start --only functions",
     "shell": "firebase functions:shell",
-    "start": "yarn shell",
+    "start": "node index.js",
     "deploy": "firebase deploy --only functions",
     "logs": "firebase functions:log"
   },
   "engines": {
-    "node": "14"
+    "node": "18"
   },
   "main": "index.js",
   "dependencies": {
-    "apollo-server-express": "^2.25.0",
+    "@apollo/server": "^4.9.4",
+    "cors": "^2.8.5",
     "faker": "^5.5.3",
     "firebase-admin": "^9.8.0",
     "firebase-functions": "^3.14.1",
-    "graphql": "^15.5.0",
+    "graphql": "^16.8.1",
     "uuid": "^8.3.2"
   },
   "devDependencies": {
     "firebase-functions-test": "^0.2.0"
   },
-  "private": true
+  "private": true,
+  "type": "module"
 }

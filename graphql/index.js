@@ -1,6 +1,6 @@
-const resolvers = require('./resolvers');
-const schemas = require('./schemas');
-const { usersController } = require('../controllers');
+import { resolverFunctions as resolvers } from './resolvers.js';
+import { schemas } from './schemas.js';
+import { usersController } from '../controllers/index.js';
 
 const contextHandler = ({ req }) => {
   const userId = req.header('userId') || '';
@@ -9,7 +9,7 @@ const contextHandler = ({ req }) => {
   return { user };
 }
 
-module.exports = {
+export {
  resolvers,
  schemas,
  contextHandler

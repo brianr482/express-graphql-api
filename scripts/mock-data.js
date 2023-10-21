@@ -1,7 +1,7 @@
-const faker = require('faker');
-const { v4: uuidv4 } = require('uuid');
-const { users, tweets } = require('../models/data');
-const { Tweet, User } = require('../models');
+import faker from 'faker';
+import { v4 as uuidv4 } from 'uuid';
+import { users, tweets } from '../models/data.js';
+import { Tweet, User } from '../models/index.js';
 
 const FAKE_USERS_AMOUNT = 20;
 const FAKE_TWEETS_AMOUNT = 50;

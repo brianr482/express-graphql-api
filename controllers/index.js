@@ -1,7 +1,7 @@
-const tweetsController = require('./tweets-controller');
-const usersController = require('./users-controller');
+import * as tweetsController from './tweets-controller.js';
+import * as usersController from './users-controller.js';
 
-module.exports = {
+export {
   tweetsController,
   usersController
 };

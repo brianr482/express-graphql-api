@@ -1,8 +1,3 @@
 // Create fake datasources
-const tweets = new Map();
-const users = new Map();
-
-module.exports = {
-  tweets,
-  users
-};
+export const tweets = new Map();
+export const users = new Map();

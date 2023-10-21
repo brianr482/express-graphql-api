@@ -1,7 +1,7 @@
-const { User } = require('./User');
-const { Tweet } = require('./Tweet');
+import { User } from './User.js';
+import { Tweet } from './Tweet.js';
 
-module.exports = { 
+export { 
   User,
   Tweet
 };

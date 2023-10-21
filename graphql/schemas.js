@@ -1,6 +1,4 @@
-const { gql } = require('apollo-server-express');
-
-const schemas = gql`
+export const schemas = `#graphql
   # Queries
   type Query {
     tweets: [Tweet]
@@ -37,5 +35,3 @@ const schemas = gql`
     email: String!
   }
 `;
-
-module.exports = schemas;

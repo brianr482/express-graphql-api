@@ -1,4 +1,4 @@
-const { users, tweets } = require('./data');
+import { users, tweets } from './data.js';
 
 /**
  * Represents the User identity
@@ -16,7 +16,7 @@ class User {
   }
 }
 
-module.exports = {
+export {
   User,
   users
 };
