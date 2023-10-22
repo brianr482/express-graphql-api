@@ -27,14 +27,15 @@ export const schemas = `#graphql
 
   # Mutations
   type Mutation {
-    createTweet(input: PostInput!): Post
-    removeTweet(id: ID!): Boolean
+    createPost(input: PostInput!): Post
+    removePost(id: ID!): Boolean
 
     createUser(input: UserInput!): User
   }
   input PostInput {
     body: String!
     location: String!
+    authorId: ID!
   }
   input UserInput {
     fullname: String!

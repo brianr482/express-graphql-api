@@ -25,9 +25,8 @@ export const resolverFunctions = {
 
   // Mutations
   Mutation: {
-    createTweet: (_, { input }, context) =>
-      postsController.create(input, context),
-    removeTweet: (_, { id }, context) => postsController.remove(id, context),
+    createPost: (_, { input }) => postsController.create(input),
+    removePost: (_, { id }) => postsController.remove(id),
 
     createUser: (_, { input }) => usersController.create(input),
   }

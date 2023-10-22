@@ -1,28 +1,33 @@
+import { ObjectId } from 'mongodb';
 import { Users } from '../db/models/index.js';
 
 /**
- * Fetch all the users from datasource
+ * Fetch all the users from database
  * @returns {User[]} List of all users
  */
 export const index = () => Users.find().toArray();
 
 /**
- * Get an user by filtering by the given user id
+ * Get the user associated with the given user id
  * @param {string} id ID of the user to fetch
  * @returns {User|null} User or null if not found
  */
 export const getById = (id) => Users.findOne({ _id: id });
 
 /**
+ * Determine if a user with the given id exists
+ * @param {string} id ID of the user to determine if exists
+ * @returns {boolean} true if the user exists, false otherwise
+ */
+export const exists = async (id) => (await Users.countDocuments({ _id: new ObjectId(id) }, { limit: 1 })) > 0;
+
+/**
  * Create a user
  * @param {object} input Data of the user to be created
  * @returns {User} Created user
  */
-export const create = (input) => {
-  const id = '';
-  const { fullname, email } = input;
-  const newUser = new User({ id, fullname, email });
-  users.set(id, newUser);
-  
-  return newUser;
-}
+export const create = async (input) => {
+  const userId = (await Users.insertOne(input)).insertedId;
+
+  return getById(userId);
+};

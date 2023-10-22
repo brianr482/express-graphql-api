@@ -1,4 +1,6 @@
+import { ObjectId } from 'mongodb';
 import { Posts } from '../db/models/index.js';
+import * as usersController from './users-controller.js';
 
 /**
  * Fetch all the posts from database
@@ -13,42 +15,35 @@ export const index = () => Posts.find().toArray();
 export const getByAuthorId = (authorId) => Posts.find({ authorId }).toArray();
 
 /**
- * Get a post by filtering by the given id
- * @param {string} id UUID of the post to fetch
- * @returns {Post|null} Tweet or null if not found
+ * Get the post associated with the given id
+ * @param {string} id ID of the post to fetch
+ * @returns {Post|null} Post or null if not found
  */
 export const getById = (id) => Posts.findOne({ _id: id });
 
 /**
- * Create a tweet
+ * Create a post
  * @param {object} input Data of the post to be created
  * @param {object} context Context of the current operation 
  * @returns {Post} Created post or null if author is not found
  */
-export const create = (input, { user }) => {
-  if (!user) {
+export const create = async ({ authorId, ...input }) => {
+  const autorExists = await usersController.exists(authorId);
+
+  if (!autorExists) {
     return null;
   }
 
-  const authorId = user.id;
+  const postId = (await Posts.insertOne({ ...input, authorId: new ObjectId(authorId) }))
+    .insertedId;
 
-  const id = '';
-  const { body } = input;
-  const newTweet = new Tweet({ id, authorId, body });
-  tweets.set(id, newTweet);
-
-  return newTweet;
+  return getById(postId);
 };
 
 /**
- * Remove a tweet with the given id
- * @param {string} id UUID of the tweet to be removed
- * @returns {boolean} true if the tweet was removed, otherwise false
+ * Remove a post associated with the given id
+ * @param {string} id ID of the post to be removed
+ * @returns {boolean} true if the post was removed, otherwise false
  */
-export const remove = (id) => {
-  if (!tweets.has(id)) {
-    return false;
-  }
-
-  return tweets.delete(id);
-};
+export const remove = async (id) =>
+  (await Posts.deleteOne({ _id: id })).deletedCount > 0;
