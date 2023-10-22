@@ -1,25 +1,33 @@
 import {
   usersController,
-  tweetsController,
+  postsController,
 } from '../controllers/index.js';
 
 export const resolverFunctions = {
   // Queries
   Query: {
-    // Tweets
-    tweets: tweetsController.index,
-    tweet: (_, { id }) => tweetsController.getById(id),
+    // Posts
+    posts: postsController.index,
+    post: (_, { id }) => postsController.getById(id),
 
     // Users
     users: usersController.index,
     user: (_, { id }) => usersController.getById(id),
   },
 
+  // Object types
+  Post: {
+    author: (post) => usersController.getById(post.authorId),
+  },
+  User: {
+    posts: (user) => postsController.getByAuthorId(user._id),
+  },
+
   // Mutations
   Mutation: {
     createTweet: (_, { input }, context) =>
-      tweetsController.create(input, context),
-    removeTweet: (_, { id }, context) => tweetsController.remove(id, context),
+      postsController.create(input, context),
+    removeTweet: (_, { id }, context) => postsController.remove(id, context),
 
     createUser: (_, { input }) => usersController.create(input),
   }

@@ -1,7 +1,7 @@
-import * as tweetsController from './posts-controller.js';
+import * as postsController from './posts-controller.js';
 import * as usersController from './users-controller.js';
 
 export {
-  tweetsController,
+  postsController,
   usersController
 };

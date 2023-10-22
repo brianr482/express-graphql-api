@@ -16,7 +16,7 @@ export const schemas = `#graphql
   }
   type User {
     _id: ID!
-    posts: [Tweet!]
+    posts: [Post!]
     fullname: String!
     email: String!
     bio: String!
@@ -34,9 +34,14 @@ export const schemas = `#graphql
   }
   input PostInput {
     body: String!
+    location: String!
   }
   input UserInput {
     fullname: String!
     email: String!
+    bio: String!
+    username: String!
+    phone: String!
+    address: String!
   }
 `;

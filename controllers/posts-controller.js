@@ -1,24 +1,29 @@
-import { v4 as uuidv4 } from 'uuid';
-import { tweets, Tweet } from '../db/models/post.js';
+import { Posts } from '../db/models/index.js';
 
 /**
- * Fetch all the tweets from datasource
- * @returns {Tweet[]} List of all tweets
+ * Fetch all the posts from database
+ * @returns {Post[]} List of all posts
  */
-export const index = () => tweets.values();
+export const index = () => Posts.find().toArray();
 
 /**
- * Get a tweet by filtering by the given tweet id
- * @param {string} id UUID of the tweet to fetch
- * @returns {Tweet|null} Tweet or null if not found
+ * Fetch all the posts associated with the given id from database
+ * @returns {Post[]} List of posts
  */
-export const getById = (id) => tweets.get(id);
+export const getByAuthorId = (authorId) => Posts.find({ authorId }).toArray();
+
+/**
+ * Get a post by filtering by the given id
+ * @param {string} id UUID of the post to fetch
+ * @returns {Post|null} Tweet or null if not found
+ */
+export const getById = (id) => Posts.findOne({ _id: id });
 
 /**
  * Create a tweet
- * @param {object} input Data of the tweet to be created
+ * @param {object} input Data of the post to be created
  * @param {object} context Context of the current operation 
- * @returns {Tweet} Created tweet or null if author is not found
+ * @returns {Post} Created post or null if author is not found
  */
 export const create = (input, { user }) => {
   if (!user) {
@@ -27,7 +32,7 @@ export const create = (input, { user }) => {
 
   const authorId = user.id;
 
-  const id = uuidv4();
+  const id = '';
   const { body } = input;
   const newTweet = new Tweet({ id, authorId, body });
   tweets.set(id, newTweet);

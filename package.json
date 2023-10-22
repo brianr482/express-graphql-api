@@ -6,6 +6,7 @@
     "serve": "firebase emulators:start --only functions",
     "shell": "firebase functions:shell",
     "start": "node index.js",
+    "start:dev": "nodemon index.js",
     "deploy": "firebase deploy --only functions",
     "logs": "firebase functions:log",
     "db:seed": "node db/seeders/mock-data.seeder.js"
