@@ -2,6 +2,7 @@ import express from 'express';
 import cors from 'cors';
 import http from 'http';
 import 'dotenv/config';
+import gFunctions from '@google-cloud/functions-framework';
 import { ApolloServer } from '@apollo/server';
 import { expressMiddleware } from '@apollo/server/express4';
 import { ApolloServerPluginDrainHttpServer } from '@apollo/server/plugin/drainHttpServer';
@@ -39,5 +40,5 @@ app.use(
   ),
 );
 
-await new Promise((resolve) => httpServer.listen({ port: 4000 }, resolve));
-console.log('🚀  Running server on http://localhost:4000/graphql');
+gFunctions.http('graphql', app);
+console.log('🚀  Running server on /graphql');

@@ -1,33 +1,31 @@
 {
   "name": "functions",
-  "description": "Google Cloud Functions for GraphQL API using Node.js, Express.js and Apollo Server",
+  "description": "Google Cloud Functions for GraphQL API using Node.js, Express.j, MongoDB and Apollo Server",
   "author": "Brian Ramirez <brianramirez482@gmail.com> (https://github.com/brianr482/)",
   "scripts": {
-    "serve": "firebase emulators:start --only functions",
-    "shell": "firebase functions:shell",
-    "start": "node index.js",
-    "start:dev": "nodemon index.js",
-    "deploy": "firebase deploy --only functions",
-    "logs": "firebase functions:log",
+    "start": "npx @google-cloud/functions-framework --target=graphql",
+    "start:dev": "npm-watch start",
     "db:seed": "node db/seeders/mock-data.seeder.js"
   },
   "engines": {
     "node": "18"
   },
+  "watch": {
+    "start": "*.js"
+  },
   "main": "index.js",
   "dependencies": {
     "@apollo/server": "^4.9.4",
     "@faker-js/faker": "^8.2.0",
+    "@google-cloud/functions-framework": "^3.1.0",
     "cors": "^2.8.5",
     "dotenv": "^16.3.1",
-    "firebase-admin": "^9.8.0",
-    "firebase-functions": "^3.14.1",
     "graphql": "^16.8.1",
     "mongodb": "^6.2.0"
   },
-  "devDependencies": {
-    "firebase-functions-test": "^0.2.0"
-  },
   "private": true,
-  "type": "module"
+  "type": "module",
+  "devDependencies": {
+    "npm-watch": "^0.11.0"
+  }
 }
