@@ -1,5 +1,5 @@
 import { v4 as uuidv4 } from 'uuid';
-import { tweets, Tweet } from '../models/Tweet.js';
+import { tweets, Tweet } from '../db/models/post.js';
 
 /**
  * Fetch all the tweets from datasource

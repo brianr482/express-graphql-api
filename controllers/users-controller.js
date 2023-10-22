@@ -1,5 +1,5 @@
 import { v4 as uuidv4 } from 'uuid';
-import { users, User } from '../models/User.js';
+import { users, User } from '../db/models/user.js';
 
 /**
  * Fetch all the users from datasource

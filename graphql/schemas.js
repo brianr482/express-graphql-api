@@ -1,33 +1,38 @@
 export const schemas = `#graphql
   # Queries
   type Query {
-    tweets: [Tweet]
-    tweet(id: ID): Tweet
+    posts: [Post]
+    post(id: ID): Post
     users: [User]
     user(id: ID): User
   }
 
   # Object types
-  type Tweet {
-    id: ID!
+  type Post {
+    _id: ID!
     author: User!
     body: String!
+    location: String!
   }
   type User {
-    id: ID!
-    tweets: [Tweet!]
+    _id: ID!
+    posts: [Tweet!]
     fullname: String!
     email: String!
+    bio: String!
+    username: String!
+    phone: String!
+    address: String!
   }
 
   # Mutations
   type Mutation {
-    createTweet(input: TweetInput!): Tweet
+    createTweet(input: PostInput!): Post
     removeTweet(id: ID!): Boolean
 
     createUser(input: UserInput!): User
   }
-  input TweetInput {
+  input PostInput {
     body: String!
   }
   input UserInput {

@@ -7,7 +7,8 @@
     "shell": "firebase functions:shell",
     "start": "node index.js",
     "deploy": "firebase deploy --only functions",
-    "logs": "firebase functions:log"
+    "logs": "firebase functions:log",
+    "db:seed": "node db/seeders/mock-data.seeder.js"
   },
   "engines": {
     "node": "18"
@@ -15,12 +16,13 @@
   "main": "index.js",
   "dependencies": {
     "@apollo/server": "^4.9.4",
+    "@faker-js/faker": "^8.2.0",
     "cors": "^2.8.5",
-    "faker": "^5.5.3",
+    "dotenv": "^16.3.1",
     "firebase-admin": "^9.8.0",
     "firebase-functions": "^3.14.1",
     "graphql": "^16.8.1",
-    "uuid": "^8.3.2"
+    "mongodb": "^6.2.0"
   },
   "devDependencies": {
     "firebase-functions-test": "^0.2.0"

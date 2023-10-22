@@ -1,6 +1,7 @@
 import express from 'express';
 import cors from 'cors';
 import http from 'http';
+import 'dotenv/config';
 import { ApolloServer } from '@apollo/server';
 import { expressMiddleware } from '@apollo/server/express4';
 import { ApolloServerPluginDrainHttpServer } from '@apollo/server/plugin/drainHttpServer';
@@ -9,9 +10,7 @@ import {
   schemas,
   contextHandler
 } from './graphql/index.js';
-
-// Populate datasources with mock data
-import './scripts/mock-data.js';
+import './db/index.js'
 
 const app = express();
 const httpServer = http.createServer(app);
@@ -41,4 +40,4 @@ app.use(
 );
 
 await new Promise((resolve) => httpServer.listen({ port: 4000 }, resolve));
-console.log('Running server on http://localhost:4000/graphql');
+console.log('🚀  Running server on http://localhost:4000/graphql');

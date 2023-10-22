@@ -1,4 +1,4 @@
-import * as tweetsController from './tweets-controller.js';
+import * as tweetsController from './posts-controller.js';
 import * as usersController from './users-controller.js';
 
 export {
