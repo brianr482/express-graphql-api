@@ -1,30 +1,31 @@
-# GraphQL API using Node.js, Express.js and Apollo Server
-> Google Cloud Functions for GraphQL API using Node.js, Express.js and Apollo Server 🚀
+# GraphQL API using Node.js, Express.js, Apollo Server and MongoDB
+> Google Cloud Functions for GraphQL API using Node.js, Express.js, Apollo Server and MongoDB 🚀
 
 ## Installation
-1. Make sure you're using the properly node version for the project which is `14`
-> Note: If you're using nvm, there is a .nvrmrc file for the project so you just need to run `nvm use`. Otherwise, you have to check it on your own.
+1. Make sure you're using the properly node version for the project which is `18`
+> Note: If you're using nvm, there is a `.nvmrc` file for the project so you just need to run `nvm use`. Otherwise, you have to check it on your own.
 2. Run `yarn` in order to install all the required dependencies
-3. If you want to deploy it on your own Google Cloud Functions project, updates the `.firebaserc` file with the name of your project.
 
 ## How to run
-To run the functions locally, run the following command `yarn serve`.
-There are other commands which could be helpful in the development process:
-- To get the logs of the functions, run `yarn logs`
-- To open the firebase function shell, run `yarn shell`
+Please, follow these steps to ensure the app successfully runs.
+1. Copy the `.env.example` file into the root of the project and name it `.env`. Once you have done this, replace the value for the environment variable `DATABASE_URI` with the URI of your database.
+2. Run the following command `yarn start` to run the functions locally.
 
-## How to deploy
-To deploy the functions on Firebase, run `yarn deploy`.
+There are other commands which could be helpful in the development process:
+- Run `yarn start:dev` to run the functions locally and watch for file changes (hot reload).
+
+### Database
+- Run `yarn db:seed` to run the database seeds and populate your database with initial data.
 
 ## Project Structure
 ### `controllers`
-It has all controllers files that the API needs to handle the communication between the resolvers and the models.
+It has all controllers files that the API needs to handle the communication between the resolvers and the database.
+### `db`
+#### `models`
+It contains the instances of each mongo collection that represents the data source for each model object identity on this project.
 
-### `models`
-It contains the models that represent each object identity on this project.
+#### `seeders`
+It has the seeders needed to populate the database with the initial mock data for the project.
 
 ### `graphql`
 All the core GraphQL server logic such as `resolvers`, `schemas`, `contexts` and so on are located here.
-
-### `scripts`
-All the scripts of the project are located here. As of now, there is only one script (`mock-data`) which handles populating the datasources with mock data.
