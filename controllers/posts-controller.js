@@ -28,9 +28,9 @@ export const getById = (id) => Posts.findOne({ _id: id });
  * @returns {Post} Created post or null if author is not found
  */
 export const create = async ({ authorId, ...input }) => {
-  const autorExists = await usersController.exists(authorId);
+  const authorExists = await usersController.exists(authorId);
 
-  if (!autorExists) {
+  if (!authorExists) {
     return null;
   }
 
