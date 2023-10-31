@@ -46,4 +46,4 @@ export const create = async ({ authorId, ...input }) => {
  * @returns {boolean} true if the post was removed, otherwise false
  */
 export const remove = async (id) =>
-  (await Posts.deleteOne({ _id: id })).deletedCount > 0;
+  (await Posts.deleteOne({ _id: new ObjectId(id) })).deletedCount > 0;
