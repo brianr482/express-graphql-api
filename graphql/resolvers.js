@@ -29,6 +29,7 @@ export const resolverFunctions = {
     removePost: (_, { id }) => postsController.remove(id),
 
     createUser: (_, { input }) => usersController.create(input),
+    updateUser: (_, { id, input }) => usersController.update(id, input),
     removeUser: (_, { id }) => usersController.remove(id),
   }
 };

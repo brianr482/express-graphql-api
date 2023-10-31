@@ -32,6 +32,7 @@ export const schemas = `#graphql
     removePost(id: ID!): Boolean
 
     createUser(input: UserInput!): User
+    updateUser(id: ID!, input: UserUpdateInput!): User
     removeUser(id: ID!): Boolean
   }
 
@@ -49,5 +50,12 @@ export const schemas = `#graphql
     username: String!
     phone: String!
     address: String!
+  }
+
+  input UserUpdateInput {
+    fullname: String
+    bio: String
+    phone: String
+    address: String
   }
 `;

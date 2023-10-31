@@ -33,6 +33,21 @@ export const create = async (input) => {
 };
 
 /**
+ * Update a user
+ * @param {string} id ID of the user to be updated
+ * @param {object} input Data of the user to be updated
+ * @returns {User} Updated user
+ */
+export const update = async (id, input) =>
+  (await Users.findOneAndUpdate(
+    {
+      _id: new ObjectId(id),
+    },
+    { $set: input },
+    { returnDocument: 'after' }
+  ));
+
+/**
  * Remove a user associated with the given id
  * @param {string} id ID of the user to be removed
  * @returns {boolean} true if the user was removed, otherwise false
