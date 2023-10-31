@@ -26,7 +26,7 @@ export const getByAuthorId = (authorId) => Posts.find({ authorId }).toArray();
  * @param {string} id ID of the post to fetch
  * @returns {Post|null} Post or null if not found
  */
-export const getById = (id) => Posts.findOne({ _id: id });
+export const getById = (id) => Posts.findOne({ _id: new ObjectId(id) });
 
 /**
  * Create a post
