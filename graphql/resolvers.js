@@ -9,6 +9,7 @@ export const resolverFunctions = {
     // Posts
     posts: postsController.index,
     post: (_, { id }) => postsController.getById(id),
+    myPosts: (_, args, ctx) => postsController.findByAuthorId(ctx.authenticatedUser._id),
 
     // Users
     users: usersController.index,

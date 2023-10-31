@@ -9,6 +9,13 @@ import * as usersController from './users-controller.js';
 export const index = () => Posts.find().toArray();
 
 /**
+ * Fetch all the posts associated with the given authorId from database
+ * @returns {Post[]} List of posts
+ */
+export const findByAuthorId = (authorId) =>
+  Posts.find({ authorId: new ObjectId(authorId) }).toArray();
+
+/**
  * Fetch all the posts associated with the given id from database
  * @returns {Post[]} List of posts
  */

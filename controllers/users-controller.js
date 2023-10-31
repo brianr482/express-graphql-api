@@ -12,7 +12,7 @@ export const index = () => Users.find().toArray();
  * @param {string} id ID of the user to fetch
  * @returns {User|null} User or null if not found
  */
-export const getById = (id) => Users.findOne({ _id: id });
+export const getById = (id) => Users.findOne({ _id: new ObjectId(id) });
 
 /**
  * Determine if a user with the given id exists

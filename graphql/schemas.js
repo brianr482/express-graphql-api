@@ -3,6 +3,9 @@ export const schemas = `#graphql
   type Query {
     posts: [Post]
     post(id: ID): Post
+    "It returns all the posts associated with the authenticated user"
+    myPosts: [Post]!
+
     users: [User]
     user(id: ID): User
   }
@@ -35,7 +38,6 @@ export const schemas = `#graphql
     It will return the created post.
     """
     createPost(input: PostInput!): Post
-
     removePost(id: ID!): Boolean
 
     createUser(input: UserInput!): User
