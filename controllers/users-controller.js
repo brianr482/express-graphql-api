@@ -31,3 +31,11 @@ export const create = async (input) => {
 
   return getById(userId);
 };
+
+/**
+ * Remove a user associated with the given id
+ * @param {string} id ID of the user to be removed
+ * @returns {boolean} true if the user was removed, otherwise false
+ */
+export const remove = async (id) =>
+  (await Users.deleteOne({ _id: new ObjectId(id) })).deletedCount > 0;

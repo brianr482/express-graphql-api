@@ -7,13 +7,14 @@ export const schemas = `#graphql
     user(id: ID): User
   }
 
-  # Object types
+  # Models
   type Post {
     _id: ID!
     author: User!
     body: String!
     location: String!
   }
+
   type User {
     _id: ID!
     posts: [Post!]
@@ -31,12 +32,16 @@ export const schemas = `#graphql
     removePost(id: ID!): Boolean
 
     createUser(input: UserInput!): User
+    removeUser(id: ID!): Boolean
   }
+
+  # Inputs
   input PostInput {
     body: String!
     location: String!
     authorId: ID!
   }
+
   input UserInput {
     fullname: String!
     email: String!

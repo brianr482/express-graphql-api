@@ -15,7 +15,7 @@ export const resolverFunctions = {
     user: (_, { id }) => usersController.getById(id),
   },
 
-  // Object types
+  // Models
   Post: {
     author: (post) => usersController.getById(post.authorId),
   },
@@ -29,5 +29,6 @@ export const resolverFunctions = {
     removePost: (_, { id }) => postsController.remove(id),
 
     createUser: (_, { input }) => usersController.create(input),
+    removeUser: (_, { id }) => usersController.remove(id),
   }
 };
